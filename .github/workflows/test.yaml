@@ -18,7 +18,7 @@ jobs:
       - name: Run builds
         uses: benc-uk/workflow-dispatch@v1
         with:
-          token: ${{ secrets.COMMUNITY_ACTIONS_PAT }}
+          token: ${{ secrets.ACTIONS_PAT }}
           repo: ${{ matrix.repo.name }}
           ref: main
           workflow: ${{ matrix.repo.workflow }}
