@@ -1,5 +1,5 @@
 name: Test All Plugins
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   test:
@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.COMMUNITY_ACTIONS_PAT }}
           repo: ${{ matrix.repo.name }}
           ref: main
-          workflow: test.yml
+          workflow: ${{ matrix.repo.workflow }}
           wait-for-completion: "true"
           sync-status: "true"
-          inputs: ${{ matrix.repo.inputs }}
+          wait-timeout-seconds: 3600
