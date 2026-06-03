@@ -1,0 +1,27 @@
+name: Test All Plugins
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo:
+          - name: thin-edge/tedge-demo-container
+            workflow: test.yaml
+          - name: thin-edge/tedge-container-bundle
+            workflow: test.yaml
+          - name: thin-edge/tedge-standalone
+            workflow: test.yaml
+    steps:
+      - name: Run builds
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          token: ${{ secrets.COMMUNITY_ACTIONS_PAT }}
+          repo: ${{ matrix.repo.name }}
+          ref: main
+          workflow: test.yml
+          wait-for-completion: "true"
+          sync-status: "true"
+          inputs: ${{ matrix.repo.inputs }}
