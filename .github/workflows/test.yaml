@@ -27,6 +27,7 @@ jobs:
           - name: thin-edge/tedge-rugix-core
             ui-name: tedge-rugix-core
             workflow: bake-image.yaml
+            ref: v0.9
           - name: thin-edge/tedge-monit-setup
             ui-name: tedge-monit-setup
             workflow: test.yaml
@@ -63,6 +64,7 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS_PAT }}
           repo: ${{ matrix.repo.name }}
+          ref: "${{ matrix.repo.ref || 'main' }}"
           workflow: ${{ matrix.repo.workflow }}
           wait-for-completion: "true"
           sync-status: "true"
