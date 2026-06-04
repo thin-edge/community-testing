@@ -72,4 +72,5 @@ jobs:
           workflow: ${{ matrix.repo.workflow }}
           wait-for-completion: "true"
           sync-status: "true"
+          wait-interval-seconds: 60
           wait-timeout-seconds: 3600
