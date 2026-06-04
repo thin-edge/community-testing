@@ -6,17 +6,20 @@ on:
 
 jobs:
   test:
-    name: "${{ matrix.repo.name }}"
+    name: "${{ matrix.repo.ui-name }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         repo:
           - name: thin-edge/tedge-demo-container
+            ui-name: tedge-demo-container
             workflow: test.yaml
           - name: thin-edge/tedge-container-bundle
+            ui-name: tedge-container-bundle
             workflow: test.yaml
           - name: thin-edge/tedge-standalone
+            ui-name: tedge-standalone
             workflow: test.yaml
     steps:
       - name: Run builds
