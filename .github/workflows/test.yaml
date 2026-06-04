@@ -1,5 +1,6 @@
 name: Test All Plugins
 on:
+  workflow_dispatch:
   push:
   schedule:
     - cron: "43 3 * * *" # Runs every day at 3:43 AM UTC
