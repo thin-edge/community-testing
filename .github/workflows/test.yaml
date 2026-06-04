@@ -21,6 +21,42 @@ jobs:
           - name: thin-edge/tedge-standalone
             ui-name: tedge-standalone
             workflow: test.yaml
+          # - name: thin-edge/tedge-actia-tgur
+          #   ui-name: tedge-actia-tgur
+          #   workflow: test.yaml
+          - name: thin-edge/tedge-rugix-core
+            ui-name: tedge-rugix-core
+            workflow: bake-image.yaml
+          - name: thin-edge/tedge-monit-setup
+            ui-name: tedge-monit-setup
+            workflow: test.yaml
+          # - name: thin-edge/opcua-device-gateway-container
+          #   ui-name: opcua-device-gateway-container
+          #   workflow: test.yaml
+          - name: thin-edge/modbus-plugin
+            ui-name: modbus-plugin
+            workflow: test.yaml
+          - name: thin-edge/c8y-command-plugin
+            ui-name: c8y-command-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-container-plugin
+            ui-name: tedge-container-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-parameter-plugin
+            ui-name: tedge-parameter-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-inventory-plugin
+            ui-name: tedge-inventory-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-nodered-plugin
+            ui-name: tedge-nodered-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-rpm-plugin
+            ui-name: tedge-rpm-plugin
+            workflow: test.yaml
+          - name: thin-edge/tedge-apk-plugin
+            ui-name: tedge-apk-plugin
+            workflow: test.yaml
     steps:
       - name: Run builds
         uses: benc-uk/workflow-dispatch@v1
