@@ -35,7 +35,7 @@ jobs:
           #   workflow: test.yaml
           - name: thin-edge/modbus-plugin
             ui-name: modbus-plugin
-            workflow: test.yaml
+            workflow: test.yml
           - name: thin-edge/c8y-command-plugin
             ui-name: c8y-command-plugin
             workflow: test.yaml
@@ -63,7 +63,6 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS_PAT }}
           repo: ${{ matrix.repo.name }}
-          ref: main
           workflow: ${{ matrix.repo.workflow }}
           wait-for-completion: "true"
           sync-status: "true"
