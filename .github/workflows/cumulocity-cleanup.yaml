@@ -13,7 +13,7 @@ permissions:
 jobs:
   cleanup:
     name: Cleanup
-    if: github.repository == 'thin-edge/thin-edge.io'
+    if: github.repository == 'thin-edge/community-testing'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
