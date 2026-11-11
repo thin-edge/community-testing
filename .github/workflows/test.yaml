@@ -41,9 +41,6 @@ jobs:
           - name: thin-edge/modbus-plugin
             ui-name: modbus-plugin
             workflow: test.yml
-          - name: thin-edge/c8y-command-plugin
-            ui-name: c8y-command-plugin
-            workflow: test.yaml
           - name: thin-edge/tedge-container-plugin
             ui-name: tedge-container-plugin
             workflow: test.yaml
