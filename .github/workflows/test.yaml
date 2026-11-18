@@ -70,8 +70,10 @@ jobs:
           workflow: ${{ matrix.repo.workflow }}
           wait-for-completion: "true"
           sync-status: "true"
-          wait-interval-seconds: 60
-          wait-timeout-seconds: 3600
+          # Runs can stay queued for a while when all plugins are triggered at once, so
+          # allow 90 minutes, and poll every 3 minutes to keep the number of API calls low
+          wait-interval-seconds: 180
+          wait-timeout-seconds: 5400
 
       # workflow-dispatch only logs a warning when wait-timeout-seconds is reached and
       # then reports success, so check the outcome of the triggered run explicitly
