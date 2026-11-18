@@ -61,6 +61,7 @@ jobs:
             workflow: test.yaml
     steps:
       - name: Run builds
+        id: dispatch
         uses: benc-uk/workflow-dispatch@v1
         with:
           token: ${{ secrets.ACTIONS_PAT }}
@@ -71,3 +72,19 @@ jobs:
           sync-status: "true"
           wait-interval-seconds: 60
           wait-timeout-seconds: 3600
+
+      # workflow-dispatch only logs a warning when wait-timeout-seconds is reached and
+      # then reports success, so check the outcome of the triggered run explicitly
+      - name: Check result of triggered run
+        env:
+          GH_TOKEN: ${{ secrets.ACTIONS_PAT }}
+          REPO: ${{ matrix.repo.name }}
+          RUN_ID: ${{ steps.dispatch.outputs.runId }}
+          RUN_URL: ${{ steps.dispatch.outputs.runUrlHtml }}
+        run: |
+          read -r status conclusion < <(gh run view "$RUN_ID" -R "$REPO" --json status,conclusion --jq '"\(.status) \(.conclusion)"')
+          echo "Triggered run: $RUN_URL (status=$status, conclusion=${conclusion:-none})"
+          if [ "$conclusion" != "success" ]; then
+            echo "::error::Triggered run did not succeed (status=$status, conclusion=${conclusion:-none}): $RUN_URL"
+            exit 1
+          fi
